@@ -1,0 +1,370 @@
+--> React JS: It is an open-source, cross-platform JavaScript library. Which is used to
+develop User Interface (UI) (front-end).
+
+--> It is known as view layer of the applications (Presentation Layer).
+--> It is maintained by Facebook.
+--> React JS: Web Applications.
+--> React Native: Mobile Applications.
+
+--> With the help of react we cab develop SPA (Single Page Applications).
+
+--> Features of React JS: 
+
+    -> Component Based Architecture: It is all about component. It is used for reuability. With the help of
+        it we can divide our application into a small pieces of code.
+
+    -> Support JSX (JavaScript Syntax Extension): With the help of JSX we can write html code within JavaScript.
+       The code is more clear and readable (easy to understand).
+
+    -> **But browser doesn't understand JSX. So, in react we have a Babel Transpilar with Transpile or Compile JSX Code into JS.
+
+--> ** Virtual DOM: It is a simple copy of DOM. It is a virtual representation of DOM.
+
+--> When new element are added to the UI, It creates a new Virtual DOM tree. Then it compares to the previous copy.
+    After it only the new part is updated in the Real DOM. That's why the reason the performance is fast.
+
+--> Environmental Setup (Installation):- 
+    -> Node JS
+    -> https://nodejs.org/en/download/package-manager
+    --> Check node is install or not.
+        -> cmd/terminal
+            node --v
+
+--> How we create react applications:
+    npx create-react-app appname
+
+npx create-react-app demo
+
+cd demo
+npm start
+
+--> How we run a react application
+    -> Open App folder in cmd/terminal
+       npm start (3000 port in oyur default browser).
+
+--> Folder and directory structure:-
+    -> node_modules: In that folder all node related modules are store. They used in react to create applications.
+    -> public: Global folder where we store assets (CSS/Images/JS).
+        index.html: Main html file which execute when react app is serve or load.
+
+    -> src: It is a main folder, all components, services we can create here.
+        -> index.js: Main JavaScript entry point file
+        -> App.js: default component.
+        -> App.test.js: Testing file of App component.
+        -> .gitignore
+        -> package.json{}: All node_modules dependencies are defined.
+        -> package-lock.json{}: dependencies with their version are defined.
+        -> README.md: All the project details we mention in the file.
+
+--> How react application is boot or execute:
+    index.html
+    <div id="root"></div>
+    --> boot --> src/index.js --> get the id root from the index.html and load the App
+    component (default component) in the div id root.
+
+--> Components: Are the core building block of react application. They are used for reuability.
+    With the help of it we can divide our UI into multiple pieces of code.
+
+--> Types of Components:
+    -> Class Component
+    -> Function Component
+
+    **** When we create a component the component name is start with Capital Letter.
+--> Class Component:
+    Syntax:
+        import {Component} from 'react';
+
+        class ComponentName extends Component{
+            // JS Logic Part
+            render(){
+                return(
+                    <div>
+                        //UI/HTML
+                    </div>
+                )
+            }
+        }
+
+Example: Home.jsx:
+            import {Component} from 'react';
+            class Home extends Component
+            {
+                render(){
+                    return(
+                        <div>
+                            <h2>Home Class Component </h2>
+                        </div>
+                    )
+                }
+            }
+
+            export default Home;
+
+--> How we use component in another component.
+
+App.js:
+
+import Home from './path';
+
+<Home />
+
+--> App1.js:
+------------
+
+import { Component } from "react";
+import Home from "./Components/Home";
+class App extends Component {
+  render() {
+    return (
+      <>
+        <h2>Welcome to Class Component Example</h2>
+        <p>We Learn React JS!</p>
+        <hr />
+        <Home />
+      </>
+    );
+  }
+}
+export default App;
+
+--> Fragment
+<> </>
+
+Components:
+-----------
+    -> Home1.jsx:
+    -----------
+import { Component } from "react";
+
+class Home extends Component {
+  render() {
+    return (
+      <>
+        <h3>Home Class Component</h3>
+        <hr />
+        <ul>
+          {this.courses.map((val, ind) => (
+            <li key={ind}>{val}</li>
+          ))}
+        </ul>
+      </>
+    );
+  }
+}
+
+export default Home;
+
+--> Function Component:
+-------------------------
+    Syntax:
+        function ComponentName(){
+            return(
+                <>
+                    //html
+                </>
+            )
+        }
+        or
+        const ComponentName=function(){
+
+             return(
+                <>
+                    //html
+                </>
+            )
+
+        }
+
+        or
+        const ComponentName=()=>{
+            return(
+                <>
+                    //html
+                </>
+            )
+        }
+
+App.js:
+-------
+import React from "react";
+import Home from "./Components/Home";
+const App = () => {
+  return (
+    <div>
+      <h2>Welcome to React JS!</h2>
+      <hr />
+      <Home />
+    </div>
+  );
+};
+
+export default App;
+
+Home.jsx:
+----------
+const Home = () => {
+  return (
+    <div>
+      <h3>Home Page!</h3>
+    </div>
+  );
+};
+export default Home;
+
+--> How we render dynamic data?
+-> expression {}
+
+Example:
+ const title="My Home Page";
+
+ <h2> {title} </h2>
+
+ Home.jsx:
+ ---------
+
+ import React from "react";
+const Home = () => {
+  const title = "My Home Page!";
+  return (
+    <div>
+      <h3> {title} </h3>
+    </div>
+  );
+};
+export default Home;
+
+--> How we render array or object?
+
+map() array method
+
+example:
+    let courses = ["A","B","C","D"];
+    <ul>
+        {courses.map((val,ind)=>
+            <li> {val} </li>
+        )}
+    </ul>
+
+import React from "react";
+const Home = () => {
+  const title = "My Home Page!";
+  let courses = ["A", "B", "C", "D", "E"];
+  return (
+    <div>
+      <h3> {title} </h3>
+      <hr />
+      {courses.map((val, ind) => (
+        <li key={ind}> {val} </li>
+      ))}
+    </div>
+  );
+};
+export default Home;
+
+--> *** If we use map we must pass a unique key prop in the parent element.
+
+--> Conditional Rendering:- 
+    -> Ternary Operator
+        {condition ? true : false}
+example:
+
+    {
+        courses.length > 0 ? <> Render Course </> : <p> No Course Found </p>
+    }
+
+-> Only render true part:
+
+    {
+        courses.length > 0 && <> Render Course </>
+    }
+
+import React from "react";
+const Home = () => {
+  const title = "My Home Page!";
+  let courses = ["A", "B", "C", "D", "E"];
+  return (
+    <div>
+      <h3> {title} </h3>
+      <hr />
+      {courses.length > 0 ? (
+        <>
+          <h5>Courses</h5>
+          <ul>
+            {courses.map((val, ind) => (
+              <li key={ind}> {val} </li>
+            ))}
+          </ul>
+        </>
+      ) : (
+        <p> No Course Found </p>
+      )}
+    </div>
+  );
+};
+export default Home;
+
+--> Props (property) :- props are used to pass data from parent component to child component.
+    props are read only it means we can't change the props value in the child component.
+
+--> Props are passed as an attribute in a component.
+
+example: App.js
+
+            const obj={name:"Sai",age:30,city:"Hyderabad"}
+
+            <About myobj={obj} />
+
+--> How we can access the props in child component?
+
+    -> First Way: 
+        const About=(props)=>{
+            //props.myobj.name
+        }
+
+    -> Second Way(prefer):
+
+        const About=({myobj})=>{
+            //myobj.name
+        }
+
+--> State:- are used to manage data within the component. We can change the state data as per our requirement. 
+    When there is any update in a state it automatically re-render in a DOM without refresh the whole page.
+
+    ***Before 16.8 Version we can't used state in a function component, that's why the reason that time we use
+        only class component. But in react 16.8, it is introduced hooks and other react features. 
+        So, from their we can use function component over class component.
+
+        -> useState(): this hook is used to manage state in a function component.
+            syntax:
+
+                import {useState} from 'react';
+
+                //define
+
+                const[statename,handlermethod]=useState(initial value);
+        Example:
+
+            statename: the name of the state.
+            handlermethod: method to update the state data.
+
+    Eg:
+        const [count,setCount]=useState(0);
+
+--> How we read?
+    {count}
+-> update
+    setCount(e=> e+1)
+    or
+    setCount(count + 1)
+
+--> EventHandling in React JS: We use camelcase.
+
+    onClick, onMouseOver etc.
+
+    eg:
+      <button onClick={method}> Click </button>
+
+      <button onClick={()=> method(parmeter)}> Click </button>
+
+
+
